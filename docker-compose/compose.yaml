@@ -1,0 +1,71 @@
+version: '3.8'
+
+networks:
+  ros-network:
+    driver: bridge
+
+services:
+  roscore:
+    image: sangshuduo/ros-noetic-ubuntu2004:latest
+    command: roscore
+    networks:
+      - ros-network
+
+  rviz:
+    image: sangshuduo/ros-noetic-ubuntu2004:latest
+    command: rviz
+    depends_on:
+      - roscore
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+    environment:
+      - DISPLAY=${DISPLAY}
+      - "ROS_MASTER_URI=http://roscore:11311"
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - QT_X11_NO_MITSHM=1 # Fix a bug with QT
+    user: ${UID}
+    volumes:
+      - ${HOME}/.Xauthority:/root/.Xauthority:rw
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /etc/group:/etc/group:ro
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/shadow:/etc/shadow:ro
+      - /etc/sudoers:/etc/sudoers:ro
+      - /etc/sudoers.d:/etc/sudoers.d:ro
+      - /home/${USER}:/home/${USER}:rw #share your home with write permissions
+    privileged: true
+    networks:
+      - ros-network
+
+  rosbag:
+    image: sangshuduo/ros-noetic-ubuntu2004:latest
+    container_name: ros_noetic_rosbag
+    command: bash
+    depends_on:
+      - roscore
+    volumes: 
+      -   /home/ros_datasets:/home/datasets
+    networks:
+      - ros-network
+    environment:
+      - "ROS_MASTER_URI=http://roscore:11311"
+    stdin_open: true
+    tty: true
+
+  rosbash:
+    image: sangshuduo/ros-noetic-ubuntu2004:latest
+    container_name: rosbash
+    command: bash
+    depends_on:
+      - roscore
+    networks:
+      - ros-network
+    environment:
+      - "ROS_MASTER_URI=http://roscore:11311"
+    stdin_open: true
+    tty: true
