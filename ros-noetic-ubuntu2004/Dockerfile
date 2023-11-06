@@ -3,13 +3,13 @@ FROM nvidia/opengl:1.0-glvnd-runtime-ubuntu20.04
 
 ENV NVIDIA_DRIVER_CAPABILITIES ${NVIDIA_DRIVER_CAPABILITIES},display
 
-RUN apt-get update > /dev/null && apt-get install -y --no-install-recommends \
-        mesa-utils gnupg > /dev/null && \
-    rm -rf /var/lib/apt/lists/*
-
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 RUN apt-get update > /dev/null && apt-get install -y tzdata > /dev/null
+
+RUN apt-get update > /dev/null && apt-get install -y --no-install-recommends \
+        mesa-utils gnupg git vim-nox && \
+    rm -rf /var/lib/apt/lists/*
 
 # Setup sources.list
 RUN echo "deb http://packages.ros.org/ros/ubuntu focal main" > /etc/apt/sources.list.d/ros-latest.list
