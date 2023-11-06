@@ -8,8 +8,7 @@ ENV TZ=Etc/UTC
 RUN apt-get update > /dev/null && apt-get install -y tzdata > /dev/null
 
 RUN apt-get update > /dev/null && apt-get install -y --no-install-recommends \
-        mesa-utils gnupg git vim-nox && \
-    rm -rf /var/lib/apt/lists/*
+        mesa-utils gnupg git vim-nox build-essential
 
 # Setup sources.list
 RUN echo "deb http://packages.ros.org/ros/ubuntu focal main" > /etc/apt/sources.list.d/ros-latest.list
@@ -24,14 +23,16 @@ RUN apt-get update && apt-get install -y \
   ros-noetic-image-transport-plugins \
   ros-noetic-pcl-ros \
   ros-noetic-libg2o \
-  ros-noetic-tf2-ros \
   ros-noetic-joy \
   python3-rosdep \
   python3-rosinstall \
   python3-rosinstall-generator \
-  python3-wstool \
-  build-essential && \
-  rm -rf /var/lib/apt/lists/*
+  python3-wstool
+
+# Uppdate the package repository and install the tf2-tools
+RUN apt-get update && apt-get install -y \
+  ros-noetic-tf2-tools \
+  && rm -rf /var/lib/apt/lists/*
 
 ENV ROS_DISTRO noetic
 # Setup the environment variables to fix QT bug
