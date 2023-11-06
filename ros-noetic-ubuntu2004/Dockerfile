@@ -23,7 +23,15 @@ RUN apt-get update && apt-get install -y \
   ros-noetic-image-transport \
   ros-noetic-image-transport-plugins \
   ros-noetic-pcl-ros \
-  ros-noetic-libg2o
+  ros-noetic-libg2o \
+  ros-noetic-tf2-ros \
+  ros-noetic-joy \
+  python3-rosdep \
+  python3-rosinstall \
+  python3-rosinstall-generator \
+  python3-wstool \
+  build-essential && \
+  rm -rf /var/lib/apt/lists/*
 
 ENV ROS_DISTRO noetic
 # Setup the environment variables to fix QT bug
