@@ -9,6 +9,7 @@ RUN apt-get update > /dev/null && apt-get install -y tzdata > /dev/null
 
 RUN apt-get update > /dev/null \
         && apt-get install -y --no-install-recommends \
+        apt-utils \
         software-properties-common \
         mesa-utils \
         gnupg \
@@ -39,6 +40,7 @@ RUN apt-get update && apt-get install -y \
   ros-noetic-joy \
   ros-noetic-robot-pose-ekf \
   ros-noetic-navigation \
+  ros-noetic-slam-gmapping \
   python3-rosdep \
   python3-rosinstall \
   python3-rosinstall-generator \
