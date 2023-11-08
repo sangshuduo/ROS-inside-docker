@@ -41,6 +41,7 @@ RUN apt-get update && apt-get install -y \
   ros-noetic-robot-pose-ekf \
   ros-noetic-navigation \
   ros-noetic-slam-gmapping \
+  ros-noetic-moveit \
   python3-rosdep \
   python3-rosinstall \
   python3-rosinstall-generator \
