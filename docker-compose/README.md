@@ -2,6 +2,14 @@
 
 ## Prerequisites
 
+### Hardware and software requirements
+
+Since the ROS Docker image is based on nvidia/opengl, the following hardware and software requirements are required:
+
+- The system must has a graphics card with Nvidia GPU.
+- The system must install proper graphics driver.
+- (nvidia-container-toolkit)[https://github.com/NVIDIA/nvidia-container-toolkit] is installed.
+
 ### For Ubuntu 22.04 environment
 
 ```
