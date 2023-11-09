@@ -27,7 +27,7 @@ docker-compose version 1.29.2, build unknown
 
 ### For Ubuntu 20.04 environment
 
-Due to the docker-compose v1 is deprecated, please refer to the official document [1](https://docs.docker.com/compose/install/) and [2](https://docs.docker.com/desktop/install/ubuntu/) to install Docker-Desktop deb package and docker compose plugin instead of the existing package docker.io and docker-compose in the Ubuntu repository.
+Due to the docker-compose v1 is deprecated, please refer to the official document [1](https://docs.docker.com/compose/install/) and [2](https://docs.docker.com/desktop/install/ubuntu/) to install Docker-Desktop and docker compose plugin packages instead of the candidate docker.io and docker-compose packages from the Ubuntu official repository.
 
 Install instructions:
 
