@@ -15,6 +15,7 @@ RUN apt-get update > /dev/null \
         gnupg \
         git \
         vim-nox \
+        bash-completion \
         build-essential
 
 RUN add-apt-repository -y ppa:rock-core/qt4 \
@@ -59,8 +60,10 @@ ENV ROS_DISTRO noetic
 ENV QT_X11_NO_MITSHM 1
 
 # Source the ROS environment setup script
-RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /root/.bashrc
-
+RUN echo "if [ -f /etc/bash_completion ] && ! shopt -oq posix; then \n\
+    . /etc/bash_completion \n\
+fi \n\
+source /opt/ros/$ROS_DISTRO/setup.bash  \n" >> /root/.bashrc
 SHELL ["/bin/bash", "-c"]
 # Setup entrypoint
 RUN echo -e "#!/bin/bash \n\
