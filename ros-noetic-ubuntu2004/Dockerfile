@@ -18,6 +18,8 @@ RUN apt-get update > /dev/null \
         bash-completion \
         build-essential
 
+RUN apt-get install -y python3.9 python3-pip
+
 RUN add-apt-repository -y ppa:rock-core/qt4 \
     && apt-get update \
     && apt install -y qt4-dev-tools qt4-qmake
@@ -43,6 +45,7 @@ RUN apt-get update && apt-get install -y \
   ros-noetic-navigation \
   ros-noetic-slam-gmapping \
   ros-noetic-moveit \
+  ros-noetic-ros-numpy \
   python3-rosdep \
   python3-rosinstall \
   python3-rosinstall-generator \
@@ -54,6 +57,14 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/*
 
 RUN ln -sf /usr/include/opencv4 /usr/include/opencv
+RUn ln -sf /usr/include/ignition/math6 /usr/include/ignition/math4
+
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 8
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 9
+RUN pip3 install --upgrade pip
+RUN pip uninstall -y netifaces
+RUN pip install --ignore-installed netifaces
+RUN pip install --ignore-installed open3d
 
 ENV ROS_DISTRO noetic
 # Setup the environment variables to fix QT bug
