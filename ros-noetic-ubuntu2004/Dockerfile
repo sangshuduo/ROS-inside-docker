@@ -64,6 +64,7 @@ RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 9
 RUN pip3 install --upgrade pip
 RUN pip uninstall -y netifaces
 RUN pip install --ignore-installed netifaces
+RUN pip install --ignore-installed rosnumpy
 RUN pip install --ignore-installed open3d
 
 ENV ROS_DISTRO noetic
