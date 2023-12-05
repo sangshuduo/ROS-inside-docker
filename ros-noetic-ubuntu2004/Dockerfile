@@ -19,7 +19,7 @@ RUN apt-get update > /dev/null \
         iproute2 \
         build-essential
 
-RUN apt-get install -y python3.9 python3-pip
+RUN apt-get install -y python3.9 python3-pip python-is-python3
 
 RUN add-apt-repository -y ppa:rock-core/qt4 \
     && apt-get update \
