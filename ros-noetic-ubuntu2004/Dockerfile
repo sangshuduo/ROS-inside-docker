@@ -16,6 +16,7 @@ RUN apt-get update > /dev/null \
         git \
         vim-nox \
         bash-completion \
+        iproute2 \
         build-essential
 
 RUN apt-get install -y python3.9 python3-pip
