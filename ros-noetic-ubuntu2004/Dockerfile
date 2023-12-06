@@ -46,7 +46,6 @@ RUN apt-get update && apt-get install -y \
   ros-noetic-navigation \
   ros-noetic-slam-gmapping \
   ros-noetic-moveit \
-  ros-noetic-ros-numpy \
   python3-rosdep \
   python3-rosinstall \
   python3-rosinstall-generator \
@@ -65,8 +64,8 @@ RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 9
 RUN pip3 install --upgrade pip
 RUN pip uninstall -y netifaces
 RUN pip install --ignore-installed netifaces
-RUN pip install --ignore-installed rosnumpy
 RUN pip install --ignore-installed open3d
+RUN pip install --ignore-installed git+https://github.com/eric-wieser/ros_numpy@74879737c8648f48adb507a5bdf4e51c0d194124
 
 ENV ROS_DISTRO noetic
 # Setup the environment variables to fix QT bug
