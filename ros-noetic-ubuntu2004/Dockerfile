@@ -17,6 +17,7 @@ RUN apt-get update > /dev/null \
         vim-nox \
         bash-completion \
         iproute2 \
+        tmux \
         build-essential
 
 RUN apt-get install -y python3.9 python3-pip python-is-python3
